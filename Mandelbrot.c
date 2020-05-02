@@ -21,6 +21,8 @@ int main(int argc, char* argv)
         printf("ERROR");
 
     fprintf(fp,"p6\n"); //magic number
+    fprintf(fp,"%d %d\n",resX,resY);
+    fprintf(fp,"255\n");
 
     for (int i = 0; i < resY; i++)
     {
@@ -37,13 +39,19 @@ int main(int argc, char* argv)
             }
             if(k>=num)
             {
-                //事張馬奄
-                printf(" * ");
+                char black[]={0,0,0,0,0,0};
+                fwrite(black,6,1,fp);
             }
             else
             {
-                //事張馬奄
-                printf(" ");
+                char color[6];
+                color[0] = k >> 8;
+                color[1] = k & 255;
+                color[2] = k >> 8;
+                color[3] = k & 255;
+                color[4] = k >> 8;
+                color[5] = k & 255;
+                fwrite(color, 6, 1, fp);
             }
         }
         
