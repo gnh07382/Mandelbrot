@@ -6,7 +6,7 @@ int main(int argc, char* argv)
     if(argc!=6)
         exit(EXIT_FAILURE);
 
-    const double minX = atof(argv[1]), minY=atof(argv[2]), maxX=atof(argv[3]), maxY = atof(argv[4]);
+    const double minX = atof(argv[1]), minY = atof(argv[2]), maxX = atof(argv[3]), maxY = atof(argv[4]);
     int resX=atoi(argv[5]), resY=resX*(maxY-minY)/(maxX-minY);
     const int num;
 
@@ -15,11 +15,12 @@ int main(int argc, char* argv)
     double ky=(maxY-minY)/resY;
     int t,k;//k=¼ö·Å °Ë»ç±â
 
-    FILE* fp= fopen("Mandelbrot.ppm","wt");
+    FILE* fp= fopen("Mandelbrot_set.ppm","wt");
 
     if(fp==NULL)
         printf("ERROR");
 
+    fprintf(fp,"p6\n"); //magic number
 
     for (int i = 0; i < resY; i++)
     {
